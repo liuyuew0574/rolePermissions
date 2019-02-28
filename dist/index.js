@@ -1,4 +1,4 @@
-import request from '~/utils/request'
+﻿import request from '~/utils/request'
 import Vue from 'vue'
 const api = {
 //获取角色列表 liuyw
@@ -191,3 +191,4 @@ export default class role {
   }
 
 }
+
