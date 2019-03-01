@@ -47,6 +47,33 @@ const api = {
   UpdateRolePermissions(params, paramsUrl) {
     return request.post('/Permission/UpdateRolePermissions?' + paramsUrl, params)
   },
+  //查询当前机构的用户列表。未绑定机构的用户无权访问此接口。 liuyw
+  GetCorpUserList(params)
+  {
+    return request.get('/Permission/GetCorpUserList', {params})
+  },
+  // 获取指定用户信息。限当前机构 liuyw
+  GetCorpUser(params)
+  {
+    return request.get('/Permission/GetCorpUser', {params})
+  },
+  //删除指定用户。限当前机构。 liuyw
+  DeleteCorpUser(params)
+  {
+    return request.get('/Permission/DeleteCorpUser', {params})
+  },
+  // 创建用户。限当前机构
+  CreateCorpUser(params) {
+    return request.post('/Permission/CreateCorpUser', params)
+  },
+  // 设置用户角色。
+  UpdateCorpUserRole(params) {
+    return request.post('/Permission/UpdateCorpUserRole', params)
+  },
+  // 更新指定用户的信息。限当前机构。
+  UpdateCorpUser(params) {
+    return request.post('/Permission/UpdateCorpUser', params)
+  },
 }
 export default class role {
   constructor(options) {
@@ -66,16 +93,16 @@ export default class role {
         {required: true, message: '请输入角色描述', trigger: 'blur' },
       ],
     }
-    this.dialogFormVisible=false,//新增弹框
-    this.roleId = 0;  //角色id
-    this.isLoaded = false;  //IM是否初始化完成
-    this.url="";
-    this.GetRoleList()
+    this.userList=[];
+    this.userInfo=[];
+    this.dialogFormVisible=false;
+    this.dialogFormUser=false;
+    //this.GetRoleList()
   }
   //加载角色列表
-   GetRoleList() {
+  GetRoleList() {
     const that = this;
-     this.api.GetRoleList().then(function (res) {
+    this.api.GetRoleList().then(function (res) {
       if (res.isCompleted) {
         that.RoleList = res.data;
       }
@@ -89,10 +116,11 @@ export default class role {
 
     that.isLoaded = true;
   }
+  // 新增角色。限当前机构。liuyw
   AddRole(params)
   {
     const that =this;
-      this.api.AddRole(params).then(function (res) {
+    this.api.AddRole(params).then(function (res) {
       if (res.isCompleted) {
         that.UpdateRolePermissions(res.data)
       }
@@ -104,6 +132,7 @@ export default class role {
       }
     })
   }
+  //更新指定角色信息。限当前机构。 liuyw
   UpdateRole(params)
   {
     const that =this;
@@ -119,11 +148,12 @@ export default class role {
       }
     })
   }
+  //设置指定角色的权限。限当前机构。 liuyw
   UpdateRolePermissions(roleId)
   {
     const that =this;
     that.url+='&roleId='+roleId
-      this.api.UpdateRolePermissions({},that.url).then(function (res) {
+    this.api.UpdateRolePermissions({},that.url).then(function (res) {
       if(res.isCompleted){
         Vue.prototype.$message({
           type: 'success',
@@ -140,10 +170,11 @@ export default class role {
       }
     })
   }
-   GetRole()
+  //获取指定的角色信息。限当前机构 liuy
+  GetRole()
   {
     const that =this;
-      this.api.GetRole({roleId:that.roleId}).then(function (res) {
+    this.api.GetRole({roleId:that.roleId}).then(function (res) {
       if (res.isCompleted) {
         that.form={...res.data};
       }
@@ -155,40 +186,156 @@ export default class role {
       }
     })
   }
+  //获取指定角色的权限。限当前机构。 liuyw
   GetRolePermissions()
   {
     const that =this;
-      this.api.GetRolePermissions({roleId:that.roleId}).then(function (res) {
-            if(res.isCompleted){
-              res.data.map(function (item,index) {
-                that.menuList.map(function (item2,index2) {
-                  if(item2.permissionCode==item)
-                  {
-                    item2.isChoose=true;
-                  }
-                  if(item2.sonName!=undefined)
-                  {
-                    item2.sonName.map(function (item3,index)
-                    {
-                      if(item3.permissionCode==item)
-                      {
-                        item2.checkSonNameValue.push(item)
-                      }
-                    })
-                  }
-
-                })
+    this.api.GetRolePermissions({roleId:that.roleId}).then(function (res) {
+      if(res.isCompleted){
+        res.data.map(function (item,index) {
+          that.menuList.map(function (item2,index2) {
+            if(item2.permissionCode==item)
+            {
+              item2.isChoose=true;
+            }
+            if(item2.sonName!=undefined)
+            {
+              item2.sonName.map(function (item3,index)
+              {
+                if(item3.permissionCode==item)
+                {
+                  item2.checkSonNameValue.push(item)
+                }
               })
             }
-            else {
-              Vue.prototype.$message({
-                type: 'error',
-                message: res.message
-              });
-            }
+
           })
+        })
+      }
+      else {
+        Vue.prototype.$message({
+          type: 'error',
+          message: res.message
+        });
+      }
+    })
 
   }
+  //查询当前机构的用户列表。未绑定机构的用户无权访问此接口。 liuyw
+  GetCorpUserList()
+  {
+    const that =this;
+    this.api.GetCorpUserList().then(function (res) {
+      if (res.isCompleted) {
+        that.userList = res.data;
+      }
+      else {
+        Vue.prototype.$message({
+          type: 'error',
+          message: res.message
+        });
+      }
+    });
+  }
+  // 获取指定用户信息。限当前机构 liuyw
+  GetCorpUser(params)
+  {
+    const that =this;
+    this.api.GetCorpUser(params).then(function (res) {
+      if (res.isCompleted) {
+        that.userInfo = res.data;
+      }
+      else {
+        Vue.prototype.$message({
+          type: 'error',
+          message: res.message
+        });
+      }
+    });
+  }
+  //删除指定用户。限当前机构。 liuyw
+  DeleteCorpUser()
+  {
+    const that =this;
+    this.api.DeleteCorpUser(params).then(function (res) {
+      if (res.isCompleted) {
+        Vue.prototype.$message({
+          type: 'success',
+          message: "删除成功呦~"
+        });
+        that.GetCorpUserList();
+      }
+      else {
+        Vue.prototype.$message({
+          type: 'error',
+          message: res.message
+        });
+      }
+    });
+  }
+  // 创建用户。限当前机构
+  CreateCorpUser()
+  {
+    const that =this;
+    this.api.CreateCorpUser(params).then(function (res) {
+      if (res.isCompleted) {
+        Vue.prototype.$message({
+          type: 'success',
+          message: "新增成功呦~"
+        });
+        that.GetCorpUserList();
+        this.dialogFormUser=false;
+      }
+      else {
+        Vue.prototype.$message({
+          type: 'error',
+          message: res.message
+        });
+      }
+    });
+  }
+  // 设置用户角色。
+  UpdateCorpUserRole(params)
+  {
+    const that =this;
+    this.api.UpdateCorpUserRole(params).then(function (res) {
+      if (res.isCompleted) {
+        Vue.prototype.$message({
+          type: 'success',
+          message: "更新成功呦~"
+        });
+        that.GetCorpUserList();
+      }
+      else {
+        Vue.prototype.$message({
+          type: 'error',
+          message: res.message
+        });
+      }
+    });
+  }
+  // 更新指定用户的信息。限当前机构。
+  UpdateCorpUser(params)
+  {
+    const that =this;
+    this.api.UpdateCorpUser(params).then(function (res) {
+      if (res.isCompleted) {
+        Vue.prototype.$message({
+          type: 'success',
+          message: "更新成功呦~"
+        });
+        this.dialogFormUser=false;
+        that.GetCorpUserList();
+      }
+      else {
+        Vue.prototype.$message({
+          type: 'error',
+          message: res.message
+        });
+      }
+    });
+  }
+
+
 
 }
-
