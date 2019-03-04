@@ -72,7 +72,27 @@ const api = {
   },
   // 更新指定用户的信息。限当前机构。
   UpdateCorpUser(params) {
-    return request.post('/Permission/UpdateCorpUser', params)
+    return request.post('/Permission/UpdateCorpUser?userId='+params.userId, params)
+  },
+  validateMobilePhone(rule, value, callback)
+  {
+    if (value !== '') {
+      var reg = /^1[3456789]\d{9}$/;
+      if (!reg.test(value)) {
+        callback(new Error('哈尼，请输入有效的手机号码呦'));
+      }
+    }
+    return   callback();
+  },
+  validateMobilePassWord(rule, value, callback)
+  {
+    if (value !== '') {
+      var reg = /^(?=.*\d)(?=.*[a-zA-Z])/;
+      if (!reg.test(value)) {
+        callback(new Error('哈尼，密码必须有数字，字母，特殊符号组成'));
+      }
+    }
+    return   callback();
   },
 }
 export default class role {
@@ -85,6 +105,25 @@ export default class role {
       roleName:"",
       remark: "",
     };
+    this.userForm={
+      loginAccount:"",
+      userName:"",
+      phoneNumber:"",
+      loginPassword:"",
+      LoginPasswordConfirm:"",
+      roleId:"",
+    }
+    var validatePass2 = (rule, value, callback) => {
+      debugger
+      if (value === '') {
+        callback(new Error('请再次输入密码'));
+      } else if (value !== this.userForm.loginPassword) {
+        callback(new Error('两次输入密码不一致!'));
+      } else {
+        callback();
+      }
+    };
+
     this.rules={
       roleName: [
         {required: true, message: '请输入角色名称', trigger: 'blur' },
@@ -92,6 +131,32 @@ export default class role {
       remark: [
         {required: true, message: '请输入角色描述', trigger: 'blur' },
       ],
+    }
+
+    this.userRules={
+      loginAccount: [
+        {required: true, message: '请输入账号', trigger: 'blur' },
+      ],
+      userName: [
+        {required: true, message: '请输入用户名', trigger: 'blur' },
+      ],
+      phoneNumber: [
+        {validator:this.api.validateMobilePhone, message: '请输入正确的手机号呦', trigger: 'blur' },
+        {required: true, message: '请输入手机号', trigger: 'blur' },
+      ],
+      loginPassword: [
+        {required:true,message:"哈尼，请输入您的密码呦",trigger: 'blur'},
+        {validator:this.api.validateMobilePassWord, message: '密码必须有数字，字母，特殊符号组成', trigger: 'blur' },
+        { min: 8, max: 16, message: '密码必须在8-16个字符之间', trigger: 'blur' }
+
+      ],
+      LoginPasswordConfirm: [
+        { validator: validatePass2, trigger: 'blur' },
+        {required:true,message:"哈尼，请再次确认您的密码呦",trigger: 'blur'},
+      ],
+      // role: [
+      //   {required:true,message: '请选择角色', trigger: 'change' },
+      // ],
     }
     this.userList=[];
     this.userInfo=[];
@@ -120,17 +185,18 @@ export default class role {
   AddRole(params)
   {
     const that =this;
-    this.api.AddRole(params).then(function (res) {
-      if (res.isCompleted) {
-        that.UpdateRolePermissions(res.data)
-      }
-      else {
-        Vue.prototype.$message({
-          type: 'error',
-          message: res.message
-        });
-      }
-    })
+
+        this.api.AddRole(params).then(function (res) {
+          if (res.isCompleted) {
+            that.UpdateRolePermissions(res.data)
+          }
+          else {
+            Vue.prototype.$message({
+              type: 'error',
+              message: res.message
+            });
+          }
+        })
   }
   //更新指定角色信息。限当前机构。 liuyw
   UpdateRole(params)
@@ -243,7 +309,7 @@ export default class role {
     const that =this;
     this.api.GetCorpUser(params).then(function (res) {
       if (res.isCompleted) {
-        that.userInfo = res.data;
+        that.userForm = res.data;
       }
       else {
         Vue.prototype.$message({
@@ -274,25 +340,25 @@ export default class role {
     });
   }
   // 创建用户。限当前机构
-  CreateCorpUser()
+  CreateCorpUser(params)
   {
     const that =this;
     this.api.CreateCorpUser(params).then(function (res) {
-      if (res.isCompleted) {
-        Vue.prototype.$message({
-          type: 'success',
-          message: "新增成功呦~"
+          if (res.isCompleted) {
+            Vue.prototype.$message({
+              type: 'success',
+              message: "新增成功呦~"
+            });
+            that.GetCorpUserList();
+            that.dialogFormUser = false;
+          }
+          else {
+            Vue.prototype.$message({
+              type: 'error',
+              message: res.message
+            });
+          }
         });
-        that.GetCorpUserList();
-        this.dialogFormUser=false;
-      }
-      else {
-        Vue.prototype.$message({
-          type: 'error',
-          message: res.message
-        });
-      }
-    });
   }
   // 设置用户角色。
   UpdateCorpUserRole(params)
@@ -324,7 +390,7 @@ export default class role {
           type: 'success',
           message: "更新成功呦~"
         });
-        this.dialogFormUser=false;
+        that.dialogFormUser=false;
         that.GetCorpUserList();
       }
       else {
