@@ -74,6 +74,11 @@ const api = {
   UpdateCorpUser(params) {
     return request.post('/Permission/UpdateCorpUser?userId='+params.userId, params)
   },
+  //更新用户状态
+  UpdateCorpUserStatus(params)
+  {
+    return request.post('/Permission/UpdateCorpUserStatus?userId='+params.userId+'&status='+params.status)
+  },
   validateMobilePhone(rule, value, callback)
   {
     if (value !== '') {
@@ -113,6 +118,7 @@ export default class role {
       LoginPasswordConfirm:"",
       roleId:"",
     }
+    //this.roleId="";
     var validatePass2 = (rule, value, callback) => {
       debugger
       if (value === '') {
@@ -309,7 +315,10 @@ export default class role {
     const that =this;
     this.api.GetCorpUser(params).then(function (res) {
       if (res.isCompleted) {
+        debugger
         that.userForm = res.data;
+        that.userForm.roleId=Number(res.data.roleId)
+        // that.roleId=Number(res.data.roleId)
       }
       else {
         Vue.prototype.$message({
@@ -392,6 +401,27 @@ export default class role {
         });
         that.dialogFormUser=false;
         that.GetCorpUserList();
+      }
+      else {
+        Vue.prototype.$message({
+          type: 'error',
+          message: res.message
+        });
+      }
+    });
+  }
+  //更新用户状态
+  UpdateCorpUserStatus(e,params)
+  {
+    const that =this;
+    this.api.UpdateCorpUserStatus(params).then(function (res) {
+      if (res.isCompleted) {
+        Vue.prototype.$message({
+          type: 'success',
+          message: "更新成功呦~"
+        });
+       // that.GetCorpUserList();
+       e.Status=params.status
       }
       else {
         Vue.prototype.$message({
