@@ -194,17 +194,17 @@ export default class role {
   {
     const that =this;
 
-        this.api.AddRole(params).then(function (res) {
-          if (res.isCompleted) {
-            that.UpdateRolePermissions(res.data)
-          }
-          else {
-            Vue.prototype.$message({
-              type: 'error',
-              message: res.message
-            });
-          }
-        })
+    this.api.AddRole(params).then(function (res) {
+      if (res.isCompleted) {
+        that.UpdateRolePermissions(res.data)
+      }
+      else {
+        Vue.prototype.$message({
+          type: 'error',
+          message: res.message
+        });
+      }
+    })
   }
   //更新指定角色信息。限当前机构。 liuyw
   UpdateRole(params)
@@ -318,7 +318,12 @@ export default class role {
     this.api.GetCorpUser(params).then(function (res) {
       if (res.isCompleted) {
         that.userForm = res.data;
-        that.userForm.roleId=res.data.roleId
+        if(res.data.roleId=="")
+        {
+          that.userForm.roleId="";
+        }else{
+          that.userForm.roleId=Number(res.data.roleId)
+        }
       }
       else {
         Vue.prototype.$message({
@@ -353,21 +358,21 @@ export default class role {
   {
     const that =this;
     this.api.CreateCorpUser(params).then(function (res) {
-          if (res.isCompleted) {
-            Vue.prototype.$message({
-              type: 'success',
-              message: "新增成功呦~"
-            });
-            that.GetCorpUserList();
-            that.dialogFormUser = false;
-          }
-          else {
-            Vue.prototype.$message({
-              type: 'error',
-              message: res.message
-            });
-          }
+      if (res.isCompleted) {
+        Vue.prototype.$message({
+          type: 'success',
+          message: "新增成功呦~"
         });
+        that.GetCorpUserList();
+        that.dialogFormUser = false;
+      }
+      else {
+        Vue.prototype.$message({
+          type: 'error',
+          message: res.message
+        });
+      }
+    });
   }
   // 设置用户角色。
   UpdateCorpUserRole(params)
@@ -420,8 +425,8 @@ export default class role {
           type: 'success',
           message: "更新成功呦~"
         });
-       // that.GetCorpUserList();
-       e.Status=params.status
+        // that.GetCorpUserList();
+        e.Status=params.status
       }
       else {
         Vue.prototype.$message({
