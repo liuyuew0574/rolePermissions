@@ -172,10 +172,12 @@ export default class role {
   }
   //加载角色列表
   GetRoleList() {
+    debugger
     const that = this;
     this.api.GetRoleList().then(function (res) {
       if (res.isCompleted) {
         that.RoleList = res.data;
+        that.userForm.roleId=res.data[0].roleID;
       }
       else {
         Vue.prototype.$message({
@@ -315,10 +317,8 @@ export default class role {
     const that =this;
     this.api.GetCorpUser(params).then(function (res) {
       if (res.isCompleted) {
-        debugger
         that.userForm = res.data;
-        that.userForm.roleId=Number(res.data.roleId)
-        // that.roleId=Number(res.data.roleId)
+        that.userForm.roleId=res.data.roleId
       }
       else {
         Vue.prototype.$message({
