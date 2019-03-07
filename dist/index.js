@@ -92,7 +92,8 @@ const api = {
   validateMobilePassWord(rule, value, callback)
   {
     if (value !== '') {
-      var reg = /^(?=.*\d)(?=.*[a-zA-Z])/;
+      // var reg = /^(?=.*\d)(?=.*[a-zA-Z])/;
+      var reg=/^(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{8,16}$/;
       if (!reg.test(value)) {
         callback(new Error('哈尼，密码必须有数字，字母，特殊符号组成'));
       }
@@ -117,10 +118,10 @@ export default class role {
       loginPassword:"",
       LoginPasswordConfirm:"",
       roleId:"",
+      email:""
     }
     //this.roleId="";
     var validatePass2 = (rule, value, callback) => {
-      debugger
       if (value === '') {
         callback(new Error('请再次输入密码'));
       } else if (value !== this.userForm.loginPassword) {
@@ -172,7 +173,6 @@ export default class role {
   }
   //加载角色列表
   GetRoleList() {
-    debugger
     const that = this;
     this.api.GetRoleList().then(function (res) {
       if (res.isCompleted) {
@@ -334,7 +334,7 @@ export default class role {
     });
   }
   //删除指定用户。限当前机构。 liuyw
-  DeleteCorpUser()
+  DeleteCorpUser(params)
   {
     const that =this;
     this.api.DeleteCorpUser(params).then(function (res) {
