@@ -1,3 +1,5 @@
+import permissionBackground from "./permissionBackgroundControl";
+
 let permissionSupplier = {
 
 };
@@ -37,5 +39,8 @@ permissionSupplier.AccountSettings = function () {
 };
 permissionSupplier.BankAccountManager = function () {
   return $nuxt.$store.getters.loginInfo.permissions.indexOf('BankAccountManager')!=-1
+};
+permissionSupplier.CorpAdmin = function () {
+  return $nuxt.$store.getters.loginInfo.permissions.indexOf('CorpAdmin')!=-1
 };
 export default permissionSupplier;
