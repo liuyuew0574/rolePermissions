@@ -1,0 +1,31 @@
+[
+  {"permissionCode":"Overview","titleName":"概况","isChoose":false},
+  {"permissionCode":"ProductManager","titleName":"产品管理","isChoose":false},
+  {"permissionCode":"CustomerManager","titleName":"客户管理","isChoose":false,"checkSonNameValue":[],
+    "sonName":[
+      {"permissionCode":"SeeBuyersList","title":"查看采购商列表"},
+      {"permissionCode":"seeBuyerDetail","title":"查看资料详情"},
+      {"permissionCode":"WriteFollow","title":"写跟进"}
+    ]},
+  {"permissionCode":"SupplierManager","titleName":"供应商管理","isChoose":false,"checkSonNameValue":[],
+    "sonName":[
+      {"permissionCode":"SeeSupplierList","title":"查看供应商列表"},
+      {"permissionCode":"CreateSupplier","title":"新增供应商"},
+      {"permissionCode":"ImportSupplier","title":"导入"},
+      {"permissionCode":"UpdateSupplier","title":"修改"},
+      {"permissionCode":"SeeSupplierDetail","title":"查看资料详情"},
+      {"permissionCode":"SeeSupplierApproval","title":"查看入驻审批"},
+      {"permissionCode":"SupplierApprovalOperating","title":"审批操作"}
+    ]},
+  {"permissionCode":"UserManager","titleName":"用户管理","isChoose":false,"checkSonNameValue":[],
+    "sonName":[
+      {"permissionCode":"SeeUserList","title":"查看用户列表"},
+      {"permissionCode":"CreateUser","title":"新增用户"},
+      {"permissionCode":"UpdateUser","title":"编辑用户"},
+      {"permissionCode":"ResetPasswordUser","title":"重置密码"},
+      {"permissionCode":"EnableUser","title":"启用/禁用"}
+    ]},
+  {"permissionCode":"Transaction","titleName":"交易中心","isChoose":false},
+  {"permissionCode":"SettingManager","titleName":"设置中心","isChoose":false},
+  {"permissionCode":"ArticleManager","titleName":"文章管理","isChoose":false}
+]

@@ -1,0 +1,20 @@
+[
+  {"permissionCode":"ProductManager","titleName":"产品管理","isChoose":false,"checkSonNameValue":[],
+    "sonName":[
+      {"permissionCode":"SpotProductManager","title":"现货产品管理"},
+      {"permissionCode":"AvailableProductManager","title":"可供产品管理"},
+      {"permissionCode":"AddAvailableProduct","title":"添加可供产品"}
+    ]},
+  {"permissionCode":"RFQ","titleName":"询价单","isChoose":false},
+  {"permissionCode":"OrderManager","titleName":"订单管理","isChoose":false},
+  {"permissionCode":"CustomerManager","titleName":"客户管理","isChoose":false},
+  {"permissionCode":"FundsManager","titleName":"资金管理","isChoose":false},
+  {"permissionCode":"AccountManager","titleName":"账户管理","isChoose":true,"checkSonNameValue":["AccountSecurity"],
+    "sonName":[
+      {"permissionCode":"AccountSecurity","title":"账号安全"},
+      {"permissionCode":"AccountSettings","title":"账号设置"},
+      {"permissionCode":"BankAccountManager","title":"银行账户管理"}
+    ]}
+
+]
+
