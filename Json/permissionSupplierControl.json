@@ -1,20 +1,64 @@
 [
-  {"permissionCode":"ProductManager","titleName":"²úÆ·¹ÜÀí","isChoose":false,"checkSonNameValue":[],
-    "sonName":[
-      {"permissionCode":"SpotProductManager","title":"ÏÖ»õ²úÆ·¹ÜÀí"},
-      {"permissionCode":"AvailableProductManager","title":"¿É¹©²úÆ·¹ÜÀí"},
-      {"permissionCode":"AddAvailableProduct","title":"Ìí¼Ó¿É¹©²úÆ·"}
-    ]},
-  {"permissionCode":"RFQ","titleName":"Ñ¯¼Ûµ¥","isChoose":false},
-  {"permissionCode":"OrderManager","titleName":"¶©µ¥¹ÜÀí","isChoose":false},
-  {"permissionCode":"CustomerManager","titleName":"¿Í»§¹ÜÀí","isChoose":false},
-  {"permissionCode":"FundsManager","titleName":"×Ê½ğ¹ÜÀí","isChoose":false},
-  {"permissionCode":"AccountManager","titleName":"ÕË»§¹ÜÀí","isChoose":true,"checkSonNameValue":["AccountSecurity"],
-    "sonName":[
-      {"permissionCode":"AccountSecurity","title":"ÕËºÅ°²È«"},
-      {"permissionCode":"AccountSettings","title":"ÕËºÅÉèÖÃ"},
-      {"permissionCode":"BankAccountManager","title":"ÒøĞĞÕË»§¹ÜÀí"}
-    ]}
-
+  {
+    "permissionCode": "ProductManager",
+    "titleName": "äº§å“ç®¡ç†",
+    "isChoose": false,
+    "checkSonNameValue": [],
+    "sonName": [
+      {
+        "permissionCode": "SpotProductManager",
+        "title": "ç°è´§äº§å“ç®¡ç†"
+      },
+      {
+        "permissionCode": "AvailableProductManager",
+        "title": "å¯ä¾›äº§å“ç®¡ç†"
+      },
+      {
+        "permissionCode": "AddAvailableProduct",
+        "title": "æ·»åŠ å¯ä¾›äº§å“"
+      }
+    ]
+  },
+  {
+    "permissionCode": "RFQ",
+    "titleName": "è¯¢ä»·å•",
+    "isChoose": false
+  },
+  {
+    "permissionCode": "OrderManager",
+    "titleName": "è®¢å•ç®¡ç†",
+    "isChoose": false
+  },
+  {
+    "permissionCode": "CustomerManager",
+    "titleName": "å®¢æˆ·ç®¡ç†",
+    "isChoose": false
+  },
+  {
+    "permissionCode": "FundsManager",
+    "titleName": "èµ„é‡‘ç®¡ç†",
+    "isChoose": false
+  },
+  {
+    "permissionCode": "AccountManager",
+    "titleName": "è´¦æˆ·ç®¡ç†",
+    "isChoose": true,
+    "checkSonNameValue": [
+      "AccountSecurity"
+    ],
+    "sonName": [
+      {
+        "permissionCode": "AccountSecurity",
+        "title": "è´¦å·å®‰å…¨"
+      },
+      {
+        "permissionCode": "AccountSettings",
+        "title": "è´¦å·è®¾ç½®"
+      },
+      {
+        "permissionCode": "BankAccountManager",
+        "title": "é“¶è¡Œè´¦æˆ·ç®¡ç†"
+      }
+    ]
+  }
 ]
-

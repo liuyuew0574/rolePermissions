@@ -1,31 +1,111 @@
 [
-  {"permissionCode":"Overview","titleName":"¸Å¿ö","isChoose":false},
-  {"permissionCode":"ProductManager","titleName":"²úÆ·¹ÜÀí","isChoose":false},
-  {"permissionCode":"CustomerManager","titleName":"¿Í»§¹ÜÀí","isChoose":false,"checkSonNameValue":[],
-    "sonName":[
-      {"permissionCode":"SeeBuyersList","title":"²é¿´²É¹ºÉÌÁĞ±í"},
-      {"permissionCode":"seeBuyerDetail","title":"²é¿´×ÊÁÏÏêÇé"},
-      {"permissionCode":"WriteFollow","title":"Ğ´¸ú½ø"}
-    ]},
-  {"permissionCode":"SupplierManager","titleName":"¹©Ó¦ÉÌ¹ÜÀí","isChoose":false,"checkSonNameValue":[],
-    "sonName":[
-      {"permissionCode":"SeeSupplierList","title":"²é¿´¹©Ó¦ÉÌÁĞ±í"},
-      {"permissionCode":"CreateSupplier","title":"ĞÂÔö¹©Ó¦ÉÌ"},
-      {"permissionCode":"ImportSupplier","title":"µ¼Èë"},
-      {"permissionCode":"UpdateSupplier","title":"ĞŞ¸Ä"},
-      {"permissionCode":"SeeSupplierDetail","title":"²é¿´×ÊÁÏÏêÇé"},
-      {"permissionCode":"SeeSupplierApproval","title":"²é¿´Èë×¤ÉóÅú"},
-      {"permissionCode":"SupplierApprovalOperating","title":"ÉóÅú²Ù×÷"}
-    ]},
-  {"permissionCode":"UserManager","titleName":"ÓÃ»§¹ÜÀí","isChoose":false,"checkSonNameValue":[],
-    "sonName":[
-      {"permissionCode":"SeeUserList","title":"²é¿´ÓÃ»§ÁĞ±í"},
-      {"permissionCode":"CreateUser","title":"ĞÂÔöÓÃ»§"},
-      {"permissionCode":"UpdateUser","title":"±à¼­ÓÃ»§"},
-      {"permissionCode":"ResetPasswordUser","title":"ÖØÖÃÃÜÂë"},
-      {"permissionCode":"EnableUser","title":"ÆôÓÃ/½ûÓÃ"}
-    ]},
-  {"permissionCode":"Transaction","titleName":"½»Ò×ÖĞĞÄ","isChoose":false},
-  {"permissionCode":"SettingManager","titleName":"ÉèÖÃÖĞĞÄ","isChoose":false},
-  {"permissionCode":"ArticleManager","titleName":"ÎÄÕÂ¹ÜÀí","isChoose":false}
+  {
+    "permissionCode": "Overview",
+    "titleName": "æ¦‚å†µ",
+    "isChoose": false
+  },
+  {
+    "permissionCode": "ProductManager",
+    "titleName": "äº§å“ç®¡ç†",
+    "isChoose": false
+  },
+  {
+    "permissionCode": "CustomerManager",
+    "titleName": "å®¢æˆ·ç®¡ç†",
+    "isChoose": false,
+    "checkSonNameValue": [],
+    "sonName": [
+      {
+        "permissionCode": "SeeBuyersList",
+        "title": "æŸ¥çœ‹é‡‡è´­å•†åˆ—è¡¨"
+      },
+      {
+        "permissionCode": "seeBuyerDetail",
+        "title": "æŸ¥çœ‹èµ„æ–™è¯¦æƒ…"
+      },
+      {
+        "permissionCode": "WriteFollow",
+        "title": "å†™è·Ÿè¿›"
+      }
+    ]
+  },
+  {
+    "permissionCode": "SupplierManager",
+    "titleName": "ä¾›åº”å•†ç®¡ç†",
+    "isChoose": false,
+    "checkSonNameValue": [],
+    "sonName": [
+      {
+        "permissionCode": "SeeSupplierList",
+        "title": "æŸ¥çœ‹ä¾›åº”å•†åˆ—è¡¨"
+      },
+      {
+        "permissionCode": "CreateSupplier",
+        "title": "æ–°å¢ä¾›åº”å•†"
+      },
+      {
+        "permissionCode": "ImportSupplier",
+        "title": "å¯¼å…¥"
+      },
+      {
+        "permissionCode": "UpdateSupplier",
+        "title": "ä¿®æ”¹"
+      },
+      {
+        "permissionCode": "SeeSupplierDetail",
+        "title": "æŸ¥çœ‹èµ„æ–™è¯¦æƒ…"
+      },
+      {
+        "permissionCode": "SeeSupplierApproval",
+        "title": "æŸ¥çœ‹å…¥é©»å®¡æ‰¹"
+      },
+      {
+        "permissionCode": "SupplierApprovalOperating",
+        "title": "å®¡æ‰¹æ“ä½œ"
+      }
+    ]
+  },
+  {
+    "permissionCode": "UserManager",
+    "titleName": "ç”¨æˆ·ç®¡ç†",
+    "isChoose": false,
+    "checkSonNameValue": [],
+    "sonName": [
+      {
+        "permissionCode": "SeeUserList",
+        "title": "æŸ¥çœ‹ç”¨æˆ·åˆ—è¡¨"
+      },
+      {
+        "permissionCode": "CreateUser",
+        "title": "æ–°å¢ç”¨æˆ·"
+      },
+      {
+        "permissionCode": "UpdateUser",
+        "title": "ç¼–è¾‘ç”¨æˆ·"
+      },
+      {
+        "permissionCode": "ResetPasswordUser",
+        "title": "é‡ç½®å¯†ç "
+      },
+      {
+        "permissionCode": "EnableUser",
+        "title": "å¯ç”¨/ç¦ç”¨"
+      }
+    ]
+  },
+  {
+    "permissionCode": "Transaction",
+    "titleName": "äº¤æ˜“ä¸­å¿ƒ",
+    "isChoose": false
+  },
+  {
+    "permissionCode": "SettingManager",
+    "titleName": "è®¾ç½®ä¸­å¿ƒ",
+    "isChoose": false
+  },
+  {
+    "permissionCode": "ArticleManager",
+    "titleName": "æ–‡ç« ç®¡ç†",
+    "isChoose": false
+  }
 ]
