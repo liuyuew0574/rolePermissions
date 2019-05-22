@@ -40,6 +40,14 @@
         "title": "查看供应商列表"
       },
       {
+        "permissionCode": "SeeAllSupplierList",
+        "title": "查看全部供应商"
+      },
+      {
+        "permissionCode": "TransferSupplierBeInChargeOf",
+        "title": "转移负责人"
+      },
+      {
         "permissionCode": "CreateSupplier",
         "title": "新增供应商"
       },
