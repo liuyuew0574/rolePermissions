@@ -26,6 +26,12 @@ permissionBackground.SupplierManager = function () {
 permissionBackground.SeeSupplierList = function () {
   return $nuxt.$store.getters.loginInfo.permissions.indexOf('SeeSupplierList')!=-1
 };
+permissionBackground.SeeAllSupplierList = function () {
+  return $nuxt.$store.getters.loginInfo.permissions.indexOf('SeeAllSupplierList')!=-1
+};
+permissionBackground.TransferSupplierBeInChargeOf = function () {
+  return $nuxt.$store.getters.loginInfo.permissions.indexOf('TransferSupplierBeInChargeOf')!=-1
+};
 permissionBackground.CreateSupplier = function () {
   return $nuxt.$store.getters.loginInfo.permissions.indexOf('CreateSupplier')!=-1
 };
